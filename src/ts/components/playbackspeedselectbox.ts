@@ -40,7 +40,7 @@ export class PlaybackSpeedSelectBox extends SelectBox {
 
   setSpeed(speed: number): void {
     if (!this.selectItem(String(speed))) {
-      // a playback speed was set which is not in the list, add it to the list to show it to the user
+      // a playback speed was set which is not in  the list, add it to the list to show it to the user
       this.clearItems();
       this.addDefaultItems([speed]);
       this.selectItem(String(speed));
