@@ -1,0 +1,91 @@
+
+
+<script language="javascript">
+    // Initial configuration for avatars
+    var initCfg = {
+        "avsbsl":  [
+            "anna", "marc", "francoise",
+            "luna", "siggi",
+            "robotboy", "beatrice", "genie",
+            "otis", "darshan", "candy",
+            "max", "carmen", "monkey", "dino", "dinoex", "dinototo", "bahia"
+        ],
+        "avSettings": { "avList": "avsbsl", "initAv": "genie" }
+    };
+
+    var tuavatarLoaded = false;
+    var playerAvailableToPlay = true;
+
+    // Function to play SiGML text
+    function playText(stext) {
+        CWASA.playSiGMLText(stext);
+    }
+
+    // Function to set SiGML content
+    function setSiGMLContent(sigmlContent) {
+        document.getElementById("URLText").value = sigmlContent;
+        return sigmlContent;
+    }
+
+    // Function to start the player with the given SiGML content
+    function startPlayer(sigmlContent) {
+        sigmlContent = setSiGMLContent(sigmlContent);
+        CWASA.getLogger("myLog", "warn");
+        CWASA.playSiGMLText(sigmlContent);
+        CWASA.getLogger("myLog", "warn");
+    }
+
+    // Interval to check when the avatar is loaded and then play initial content
+    var loadingTout = setInterval(function () {
+        if (tuavatarLoaded) {
+            clearInterval(loadingTout);
+            console.log("Avatar loaded successfully 1!");
+        }
+    }, 1500);
+
+
+    
+
+</script>
+
+<div class="main-sign-language">
+    <div class="container-sign-language">
+        <div class="player-card">
+            <a id="player-sign-language"></a>
+            <div class="anim">
+                <div style="box-sizing: border-box; width: 100%; height: 100%; padding: 15px;">
+                    <table align="center" style="width:100%; height:100%;">
+                        <tr align="center">
+                            <td width="100%" height="90%">
+                                <div class="CWASAAvatar av0" align="center"></div>
+                            </td>
+                        </tr>
+                        <tr>   
+                            <td align="center">
+                                <span class="CWASAAvMenu av0"></span>
+                                <td align="center" style="display: none;">
+                                    <input type="button" value="Sign" class="bttnPlaySiGMLURL av0" />
+                                    <input type="button" value="Stop" class="bttnStop av0" />
+                                    <span class="CWASASpeed av0"></span>
+                                    <br/>
+                                    <span style="font-size: 90%;">
+                                        Sign/Frame:
+                                        <input class="txtSF av0" value="0/0" type="text">
+                                        Gloss:
+                                        <input class="txtGloss av0" value="[none]" type="text">
+                                    </span>
+                                    <span class="spanInfo av0">
+                                        Status:
+                                        <input type="text" class="statusExtra av0">
+                                    </span>
+                                    <input type="text" id="URLText" class="txtSiGMLURL av0 undisplayed" value="" />
+                                </td>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,33 @@
+
+.container-avatar {
+    position: absolute;
+    top: 50.6%;  /* Adjust as needed */
+    left: 0%; /* Adjust as needed */
+    z-index: 1000; /* Ensure it overlays the player */
+}
+
+
+#sign-language-content  .container-sign-language
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+
+
+}
+
+
+#sign-language-content .player-card
+{
+    width: 20rem;
+    height: 17rem;
+    border: none;
+}
+
+#sign-language-content  .anim
+{
+    width: 100%;
+    height: 100%;
+}

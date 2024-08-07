@@ -48,14 +48,17 @@ var paths = {
     tsmain: ['./src/ts/main.ts'],
     ts: ['./src/ts/**/*.ts'],
     sass: ['./src/scss/**/*.scss'],
-    json: ['./src/ts/**/*.json']
+    json: ['./src/ts/**/*.json'],
+    static: ['./src/static/**/*']  // Add this line for static assets
+    
   },
   target: {
     html: './dist',
     js: './dist/js',
     jsframework: './dist/js/framework',
     jsmain: `${outputnames.filename}.js`,
-    css: './dist/css'
+    css: './dist/css',
+    static: './dist/static'  // Add this line for static assets
   }
 };
 
@@ -198,8 +201,14 @@ gulp.task('sass', function() {
   return stream.pipe(browserSync.reload({stream: true}));
 });
 
+// Copies static assets to the target directory
+gulp.task('copy-static', function() {
+  return gulp.src(paths.source.static)
+  .pipe(gulp.dest(paths.target.static));
+});
+
 // Builds the complete project from the sources into the target directory
-gulp.task('build', gulp.series('clean', gulp.parallel('html', 'browserify', 'sass')));
+gulp.task('build', gulp.series('clean', gulp.parallel('html', 'browserify', 'sass', 'copy-static')));
 
 gulp.task('build-prod', gulp.series(function(callback) {
   production = true;
@@ -219,6 +228,9 @@ gulp.task('watch', gulp.series('build', function() {
   // Watch JSON files
   gulp.watch(paths.source.json).on('change', gulp.series('browserify'));
 
+  // Watch static files
+  gulp.watch(paths.source.static).on('change', gulp.series('copy-static', browserSync.reload));
+
   // Watch TypeScript files
   gulp.watch(paths.source.ts).on('change', gulp.series('browserify'));
 }));
@@ -236,6 +248,7 @@ gulp.task('serve', gulp.series('build', function() {
   gulp.watch(paths.source.sass).on('change', gulp.series('sass'));
   gulp.watch(paths.source.html).on('change', gulp.series('html', browserSync.reload));
   gulp.watch(paths.source.json).on('change', gulp.series('browserify'));
+  gulp.watch(paths.source.static).on('change', gulp.series('copy-static', browserSync.reload));
   catchBrowserifyErrors = true;
   gulp.watch(paths.source.ts).on('change', gulp.series('browserify'));
 }));

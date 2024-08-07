@@ -1,0 +1,80 @@
+
+
+#sign-language-content html, body {
+	/*overflow: hidden;*/
+	width: 100%;
+	height: 100%;
+}
+
+
+.txtFPS, .txtLogSpeed {
+	font-family: monospace;  font-size: 1em;  font-weight: bold;
+	text-align: center;  color: #E33;  width: 3em;
+}
+#sign-language-content .txtSF {
+	font-family: monospace;  font-size: 1em;  font-weight: bold;
+	text-align: center;  color: #E33;  width: 4em;
+}
+#sign-language-content .txtGloss {
+	font-family: monospace;  font-size: 1em;  font-weight: bold;
+	text-align: center;  color: #E33;  width: 10em;
+}
+
+#sign-language-content .canvasAv {
+	position: absolute; left: 0px; top: 0px;
+	width: 100%; height: 100%;
+}
+
+#sign-language-content .divCtrlPanel {
+	position: relative;
+    margin: 0px; border: 1px solid; padding: 1ex;
+}
+
+#sign-language-content .divAv {
+	text-align: center; 
+	position: relative; background: #ffffff00;
+	width: 100%; height: 100%; 
+	margin: 0px; 
+	/*border: 1px solid;*/
+	padding: 0px;
+}
+
+#sign-language-content .CWASAAvatar {
+	text-align: center; 
+	position: relative; background: #ffffff00;
+	width: 100%; height: 100%; 
+	margin: 0px; border: 0px; padding: 0px;
+}
+
+#sign-language-content .CWASAGUI {
+	text-align: center; 
+	position: relative; 
+	margin: 0px; border: 0px; padding: 0px;
+}
+
+#sign-language-content .txtaSiGMLText {
+    font-family: monospace;  font-size: 0.9em; width: 306px;
+}
+
+#sign-language-content .txtSiGMLURL {
+    font-family: sans-serif;  font-size: 0.9em;  width: 24em;
+}
+
+#sign-language-content .statusExtra {
+    font-family: sans-serif;  font-size: 0.8em;  width: 24em;
+}
+
+#sign-language-content .spanInfo {
+	font-size: 90%;
+}
+
+#sign-language-content  .stocApplet { visibility: hidden;  height: 1px; }
+
+#sign-language-content  .menuAv {
+    font-family: sans-serif;  font-size: 0.9em;  width: 6em;
+	display: none; /*To add the menu, comment this line*/
+}
+
+#sign-language-content  .undisplayed { display: none; }
+
+/*--------*/

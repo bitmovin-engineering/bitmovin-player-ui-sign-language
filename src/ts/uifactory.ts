@@ -3,6 +3,8 @@ import { SettingsPanelPage } from './components/settingspanelpage';
 import { SettingsPanelItem } from './components/settingspanelitem';
 import { VideoQualitySelectBox } from './components/videoqualityselectbox';
 import { PlaybackSpeedSelectBox } from './components/playbackspeedselectbox';
+//jonathan2667
+import { SignLanguageSelectBox } from './components/signlanguageselectbox';  // Add this import
 import { AudioTrackSelectBox } from './components/audiotrackselectbox';
 import { AudioQualitySelectBox } from './components/audioqualityselectbox';
 import { SettingsPanel } from './components/settingspanel';
@@ -75,9 +77,9 @@ export namespace UIFactory {
     let mainSettingsPanelPage: SettingsPanelPage;
 
     const components: Container<ContainerConfig>[] = [
+      new SettingsPanelItem(i18n.getLocalizer('Sign Language'), new SignLanguageSelectBox()),  // Add this line
       new SettingsPanelItem(i18n.getLocalizer('settings.video.quality'), new VideoQualitySelectBox()),
       new SettingsPanelItem(i18n.getLocalizer('speed'), new PlaybackSpeedSelectBox()),
-      new SettingsPanelItem(i18n.getLocalizer('Sign Language'), new PlaybackSpeedSelectBox()),
       new SettingsPanelItem(i18n.getLocalizer('settings.audio.track'), new AudioTrackSelectBox()),
       new SettingsPanelItem(i18n.getLocalizer('settings.audio.quality'), new AudioQualitySelectBox()),
     ];
@@ -86,7 +88,7 @@ export namespace UIFactory {
       const ecoModeContainer = new EcoModeContainer();
 
       ecoModeContainer.setOnToggleCallback(() => {
-        // forces the browser to re-calculate the height of the settings panel when adding/removing elements
+        // forces the browser to re-calculate the height of the settings panel when adding/removing elements 
         settingsPanel.getDomElement().css({ width: '', height: '' });
       });
 
