@@ -11,26 +11,76 @@ fetch('sign-language-avatar.html').then(response => response.text()).then(html =
 
 let isFullscreen = false;
 
-player.on(bitmovin.player.PlayerEvent.ViewModeChanged, function(event) {
+function applyStylesForScreenSize(isFullscreen) {
     const avatarContainer = document.querySelector('.container-avatar');
-    if (avatarContainer) {
-        isFullscreen = !isFullscreen;
+    const playerCard = document.querySelector('.player-card');
 
+    const screenWidth = window.innerWidth;
+
+    if (avatarContainer) {
         if (isFullscreen) {
-            // console.log(isFullscreen);
             avatarContainer.style.position = 'fixed';
-            avatarContainer.style.top = '63.3%';
-            avatarContainer.style.left = '0%';
             avatarContainer.style.zIndex = '1000';
+
+            if (screenWidth <= 767) { // Phone
+                avatarContainer.style.top = '44%';//30
+                avatarContainer.style.left = '-5%';//5
+                playerCard.style.width = '8rem';
+                playerCard.style.height = '8rem';
+            } else if (screenWidth <= 992) { // Tablet
+                avatarContainer.style.top = '36%';
+                avatarContainer.style.left = '3%';
+                playerCard.style.width = '10rem';
+                playerCard.style.height = '13rem';
+            } else if (screenWidth <= 2010) { // Desktop
+                avatarContainer.style.top = '63.3%';
+                avatarContainer.style.left = '0%';
+                playerCard.style.width = '20rem';
+                playerCard.style.height = '17rem';
+            }
+            else {
+                avatarContainer.style.top = '68.6%';
+                avatarContainer.style.left = '0%';
+                playerCard.style.width = '24rem';
+                playerCard.style.height = '20rem';
+            }
         } else {
-            // console.log(isFullscreen);
             avatarContainer.style.position = 'absolute';
-            avatarContainer.style.top = '50.6%';
-            avatarContainer.style.left = '0%';
             avatarContainer.style.zIndex = '1000';
+
+            if (screenWidth <= 767) { // Phone
+                avatarContainer.style.top = '33%';
+                avatarContainer.style.left = '-5%';
+                playerCard.style.width = '7rem';
+                playerCard.style.height = '7rem';
+            } else if (screenWidth <= 992) { // Tablet
+                avatarContainer.style.top = '48%';
+                avatarContainer.style.left = '3%';
+                playerCard.style.width = '10rem';
+                playerCard.style.height = '10rem';
+            } else { // Desktop
+                avatarContainer.style.top = '50.6%';
+                avatarContainer.style.left = '0%';
+                playerCard.style.width = '20rem';
+                playerCard.style.height = '17rem';
+            }
         }
     }
+}
+
+player.on(bitmovin.player.PlayerEvent.ViewModeChanged, function(event) {
+    isFullscreen = !isFullscreen;
+    applyStylesForScreenSize(isFullscreen);
 });
+
+// Adjust on window resize
+window.addEventListener('resize', function() {
+    applyStylesForScreenSize(isFullscreen);
+});
+
+// Initial call to set styles
+applyStylesForScreenSize(isFullscreen);
+
 
 
 /* Adding the logic for playing the Subtitles */
