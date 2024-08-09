@@ -5,6 +5,7 @@ import { VideoQualitySelectBox } from './components/videoqualityselectbox';
 import { PlaybackSpeedSelectBox } from './components/playbackspeedselectbox';
 //jonathan2667
 import { SignLanguageSelectBox } from './components/signlanguageselectbox';  // Add this import
+import { SignLanguageSettingsPanelPage } from './components/signlanguagesettings/signlanguagesettingspanelpage';
 import { AudioTrackSelectBox } from './components/audiotrackselectbox';
 import { AudioQualitySelectBox } from './components/audioqualityselectbox';
 import { SettingsPanel } from './components/settingspanel';
@@ -81,7 +82,7 @@ export namespace UIFactory {
       new SettingsPanelItem(i18n.getLocalizer('speed'), new PlaybackSpeedSelectBox()),
       new SettingsPanelItem(i18n.getLocalizer('settings.audio.track'), new AudioTrackSelectBox()),
       new SettingsPanelItem(i18n.getLocalizer('settings.audio.quality'), new AudioQualitySelectBox()),
-      new SettingsPanelItem(i18n.getLocalizer('Sign Language'), new SignLanguageSelectBox()),  // Add this line
+      // new SettingsPanelItem(i18n.getLocalizer('Sign Language'), new SignLanguageSelectBox()),  // Add this line
     ];
 
     if (config.ecoMode) {
@@ -99,10 +100,10 @@ export namespace UIFactory {
       components,
     });
 
-    let settingsPanel = new SettingsPanel({
-      components: [mainSettingsPanelPage],
-      hidden: true,
-    });
+     let settingsPanel = new SettingsPanel({
+       components: [mainSettingsPanelPage],
+       hidden: true,
+     });
 
     let subtitleSettingsPanelPage = new SubtitleSettingsPanelPage({
       settingsPanel: settingsPanel,
@@ -132,6 +133,39 @@ export namespace UIFactory {
     );
 
     settingsPanel.addComponent(subtitleSettingsPanelPage);
+
+
+    /*Sign Language*/
+
+    let signLanguageSettingsPanelPage = new SignLanguageSettingsPanelPage({
+      settingsPanel: settingsPanel
+    });
+
+    const signLanguageSelectBox = new SignLanguageSelectBox();
+
+    let signLanguageSettingsOpenButton = new SettingsPanelPageOpenButton({
+      targetPage: signLanguageSettingsPanelPage,
+      container: settingsPanel,
+      ariaLabel: i18n.getLocalizer('settings.signlanguage'),
+      text: i18n.getLocalizer('open'),
+    });
+
+    mainSettingsPanelPage.addComponent(
+      new SettingsPanelItem(
+        new SubtitleSettingsLabel({
+          text: i18n.getLocalizer('Sign Language'),
+          opener: signLanguageSettingsOpenButton,
+        }),
+        signLanguageSelectBox,
+        {
+          role: 'menubar',
+        },
+      ),
+    );
+
+    settingsPanel.addComponent(signLanguageSettingsPanelPage);
+
+
 
     let controlBar = new ControlBar({
       components: [
@@ -271,6 +305,7 @@ export namespace UIFactory {
     );
 
     settingsPanel.addComponent(subtitleSettingsPanelPage);
+    
 
     settingsPanel.addComponent(new CloseButton({ target: settingsPanel }));
     subtitleSettingsPanelPage.addComponent(new CloseButton({ target: settingsPanel }));

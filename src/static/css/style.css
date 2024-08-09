@@ -4,6 +4,8 @@
     top: 50.6%;  /* Adjust as needed */
     left: 0%; /* Adjust as needed */
     z-index: 1000; /* Ensure it overlays the player */
+    cursor: move;
+
 }
 
 

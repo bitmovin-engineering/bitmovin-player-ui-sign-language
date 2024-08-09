@@ -70,16 +70,16 @@ function applyStylesForScreenSize(isFullscreen) {
 
 player.on(bitmovin.player.PlayerEvent.ViewModeChanged, function(event) {
     isFullscreen = !isFullscreen;
-    applyStylesForScreenSize(isFullscreen);
+    //applyStylesForScreenSize(isFullscreen);
 });
 
 // Adjust on window resize
 window.addEventListener('resize', function() {
-    applyStylesForScreenSize(isFullscreen);
+    //applyStylesForScreenSize(isFullscreen);
 });
 
 // Initial call to set styles
-applyStylesForScreenSize(isFullscreen);
+//applyStylesForScreenSize(isFullscreen);
 
 
 
