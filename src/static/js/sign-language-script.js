@@ -17,7 +17,7 @@ function applyStylesForScreenSize(isFullscreen) {
 
     const screenWidth = window.innerWidth;
 
-    if (avatarContainer) {
+    if (avatarContainer && playerCard) {
         if (isFullscreen) {
             avatarContainer.style.position = 'fixed';
             avatarContainer.style.zIndex = '1000';

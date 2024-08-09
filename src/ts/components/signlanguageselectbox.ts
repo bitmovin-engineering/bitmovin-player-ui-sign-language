@@ -30,9 +30,12 @@ export class SignLanguageSelectBox extends SelectBox {
         if (value === 'off') {
           signLanguageContent.style.display = 'none';
         } else {
-          signLanguageContent.style.display = 'block';
           switchAvatarDropdown(value);
+          setTimeout(() => {
+            signLanguageContent.style.display = 'block';
+          }, 100); // Delay of 200 milliseconds
         }
+        
       }
       
       this.selectItem(value);
