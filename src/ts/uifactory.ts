@@ -165,6 +165,7 @@ export namespace UIFactory {
 
     settingsPanel.addComponent(signLanguageSettingsPanelPage);
 
+    /*End Sign Language*/
 
 
     let controlBar = new ControlBar({
@@ -309,6 +310,42 @@ export namespace UIFactory {
 
     settingsPanel.addComponent(new CloseButton({ target: settingsPanel }));
     subtitleSettingsPanelPage.addComponent(new CloseButton({ target: settingsPanel }));
+
+
+
+    /*Sign Language*/
+
+    let signLanguageSettingsPanelPage = new SignLanguageSettingsPanelPage({
+      settingsPanel: settingsPanel
+    });
+
+    const signLanguageSelectBox = new SignLanguageSelectBox();
+
+    let signLanguageSettingsOpenButton = new SettingsPanelPageOpenButton({
+      targetPage: signLanguageSettingsPanelPage,
+      container: settingsPanel,
+      ariaLabel: i18n.getLocalizer('settings.signlanguage'),
+      text: i18n.getLocalizer('open'),
+    });
+
+    mainSettingsPanelPage.addComponent(
+      new SettingsPanelItem(
+        new SubtitleSettingsLabel({
+          text: i18n.getLocalizer('Sign Language'),
+          opener: signLanguageSettingsOpenButton,
+        }),
+        signLanguageSelectBox,
+        {
+          role: 'menubar',
+        },
+      ),
+    );
+
+    settingsPanel.addComponent(signLanguageSettingsPanelPage);
+
+    /*End Sign Language*/
+
+
 
     let controlBar = new ControlBar({
       components: [
